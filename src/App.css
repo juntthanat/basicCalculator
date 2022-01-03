@@ -1,0 +1,25 @@
+.App {
+  position: relative;
+  background-color: cornflowerblue;
+  height: 100vh;
+}
+
+.center {
+  position: absolute;
+  background-color: aliceblue;
+  height: 75%;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+}
+.center-divider {
+  position: absolute;
+  background-color: cornflowerblue;
+  width: 1px;
+  height: 70vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
