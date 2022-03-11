@@ -36,6 +36,39 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  border-radius: 2%;
+}
+.display-container {
+  position: relative;
+  height: 25%;
+  width: 100%;
+}
+.display-result {
+  position: absolute;
+  background-color: white;
+  height: 80%;
+  width: 90%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5%;
+}
+#result {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  left: 10px;
+  text-align: right;
+  font-size: 30px;
+}
+#sum{
+  display: block;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  left: 10px;
+  text-align: right;
+  font-size: 30px;
 }
 .button-container {
   position: absolute;
@@ -43,7 +76,7 @@
   width: 100%;
   bottom: 0;
 }
-.button-symbol {
+.button-operation {
   height: 20%;
   width: 100%;
   display: -ms-grid;
@@ -67,7 +100,7 @@
   grid-template-columns: 2fr 1fr;
   grid-gap: 1fr;
 }
-.button-ans-equal {
+.button-clear-equal {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -82,4 +115,9 @@
   border-radius: 5px;
   font-size: large;
   font-weight: bolder;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: lightgrey;
+  transition: 0.3s ease-in-out;
 }

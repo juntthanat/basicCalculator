@@ -1,38 +1,204 @@
 import "./App.css";
-// feather icons for the symbols
+import React, { useState } from "react";
+import { FiPlus, FiMinus, FiX, FiDivide } from "react-icons/fi";
 
 function App() {
+  const [resultList, setResultList] = useState([]);
+  const [currentSum, setCurrentSum] = useState(0);
+  const [operation, setOperation] = useState(0);
+  const [firstNumber, setFirstNumber] = useState(0);
+  const [inputValue, setInputValue] = useState("");
+  const [useDot, setUseDot] = useState();
+
+  function handleOnClickButton(e) {
+    let displayCurrentSum = document.querySelector("#sum");
+    displayCurrentSum.style.display = "none";
+    switch (e.currentTarget.id) {
+      case "button-0":
+        setInputValue((prevVal) => prevVal + "0");
+        return;
+      case "button-1":
+        setInputValue((prevVal) => prevVal + "1");
+        return;
+      case "button-2":
+        setInputValue((prevVal) => prevVal + "2");
+        return;
+      case "button-3":
+        setInputValue((prevVal) => prevVal + "3");
+        return;
+      case "button-4":
+        setInputValue((prevVal) => prevVal + "4");
+        return;
+      case "button-5":
+        setInputValue((prevVal) => prevVal + "5");
+        return;
+      case "button-6":
+        setInputValue((prevVal) => prevVal + "6");
+        return;
+      case "button-7":
+        setInputValue((prevVal) => prevVal + "7");
+        return;
+      case "button-8":
+        setInputValue((prevVal) => prevVal + "8");
+        return;
+      case "button-9":
+        setInputValue((prevVal) => prevVal + "9");
+        return;
+      case "button-dot":
+        setInputValue((prevVal) => prevVal + ".");
+        return;
+      case "button-clear":
+        setInputValue("");
+        setCurrentSum(0);
+        setFirstNumber(0);
+        displayCurrentSum.style.display = "block";
+        return;
+      case "button-addition":
+        setOperation(1);
+        if (firstNumber == 0) {
+          setCurrentSum(parseFloat(inputValue));
+          setInputValue("");
+          displayCurrentSum.style.display = "block";
+          setFirstNumber(1);
+        } else {
+          setCurrentSum(currentSum + parseFloat(inputValue));
+          setInputValue("");
+          displayCurrentSum.style.display = "block";
+          return;
+        }
+
+        return;
+      case "button-subtract":
+        setOperation(2);
+        if (firstNumber == 0) {
+          setCurrentSum(parseFloat(inputValue));
+          setInputValue("");
+          displayCurrentSum.style.display = "block";
+          setFirstNumber(1);
+        } else {
+          setCurrentSum(currentSum - parseFloat(inputValue));
+          setInputValue("");
+          displayCurrentSum.style.display = "block";
+          return;
+        }
+        return;
+
+      case "button-multiply":
+        setOperation(3);
+        if (firstNumber == 0) {
+          setCurrentSum(parseFloat(inputValue));
+          setInputValue("");
+          displayCurrentSum.style.display = "block";
+          setFirstNumber(1);
+        } else {
+          setCurrentSum(currentSum * parseFloat(inputValue));
+          setInputValue("");
+          displayCurrentSum.style.display = "block";
+          return;
+        }
+        return;
+      case "button-divide":
+        setOperation(4);
+        if (firstNumber == 0) {
+          setCurrentSum(parseFloat(inputValue));
+          setInputValue("");
+          displayCurrentSum.style.display = "block";
+          setFirstNumber(1);
+        } else {
+          setCurrentSum(currentSum / parseFloat(inputValue));
+          setInputValue("");
+          displayCurrentSum.style.display = "block";
+          return;
+        }
+        return;
+      case "button-equal":
+        setInputValue("");
+        setFirstNumber(0);
+        if (operation == 1) {
+          setCurrentSum(currentSum + parseFloat(inputValue));
+        } else if (operation == 2) {
+          setCurrentSum(currentSum - parseFloat(inputValue));
+        } else if (operation == 3) {
+          setCurrentSum(currentSum * parseFloat(inputValue));
+        } else if (operation == 4) {
+          setCurrentSum(currentSum / parseFloat(inputValue));
+        }
+        // inputValue.style.display = "none";
+        displayCurrentSum.style.display = "block";
+    }
+  }
+
   return (
     <div className="App">
       <div className="center">
         <div className="center-divider"></div>
         <div className="left-container">
           <div className="left-element">
+            <div className="display-container">
+              <div className="display-result">
+                <div id="result">{inputValue}</div>
+                <div id="sum">{currentSum}</div>
+              </div>
+            </div>
             <div className="button-container">
-              <div className="button-symbol">
-                <button className="button">+</button>
-                <button className="button">-</button>
-                <button className="button">x</button>
-                <button className="button">/</button>
+              <div className="button-operation">
+                <button id="button-addition" onClick={handleOnClickButton}>
+                  <FiPlus />
+                </button>
+                <button id="button-subtract" onClick={handleOnClickButton}>
+                  <FiMinus />
+                </button>
+                <button id="button-multiply" onClick={handleOnClickButton}>
+                  <FiX />
+                </button>
+                <button id="button-divide" onClick={handleOnClickButton}>
+                  <FiDivide />
+                </button>
               </div>
               <div className="button-one-to-nine">
-                <button className="button">1</button>
-                <button className="button">2</button>
-                <button className="button">3</button>
-                <button className="button">4</button>
-                <button className="button">5</button>
-                <button className="button">6</button>
-                <button className="button">7</button>
-                <button className="button">8</button>
-                <button className="button">9</button>
+                <button id="button-7" onClick={handleOnClickButton}>
+                  7
+                </button>
+                <button id="button-8" onClick={handleOnClickButton}>
+                  8
+                </button>
+                <button id="button-9" onClick={handleOnClickButton}>
+                  9
+                </button>
+                <button id="button-4" onClick={handleOnClickButton}>
+                  4
+                </button>
+                <button id="button-5" onClick={handleOnClickButton}>
+                  5
+                </button>
+                <button id="button-6" onClick={handleOnClickButton}>
+                  6
+                </button>
+                <button id="button-1" onClick={handleOnClickButton}>
+                  1
+                </button>
+                <button id="button-2" onClick={handleOnClickButton}>
+                  2
+                </button>
+                <button id="button-3" onClick={handleOnClickButton}>
+                  3
+                </button>
               </div>
               <div className="button-zero-point">
-                <button className="button">0</button>
-                <button className="button">.</button>
+                <button id="button-0" onClick={handleOnClickButton}>
+                  0
+                </button>
+                <button id="button-dot" onClick={handleOnClickButton}>
+                  .
+                </button>
               </div>
-              <div className="button-ans-equal">
-                <button className="button">Ans</button>
-                <button className="button">=</button>
+              <div className="button-clear-equal">
+                <button id="button-clear" onClick={handleOnClickButton}>
+                  AC
+                </button>
+                <button id="button-equal" onClick={handleOnClickButton}>
+                  =
+                </button>
               </div>
             </div>
           </div>
