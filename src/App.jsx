@@ -9,9 +9,32 @@ function App() {
   const [firstNumber, setFirstNumber] = useState(0);
   const [inputValue, setInputValue] = useState("");
   const [useDot, setUseDot] = useState();
+  const [isInOperation, setIsInOperation] = useState(false);
+
+  const handleOnClickEqualButton = (result, displayCurrentSum) => {
+    if (operation == 1) {
+      result = currentSum + parseFloat(inputValue);
+      setCurrentSum(result);
+      setInputValue(result);
+    } else if (operation == 2) {
+      result = currentSum - parseFloat(inputValue);
+      setCurrentSum(result);
+      setInputValue(result);
+    } else if (operation == 3) {
+      result = currentSum * parseFloat(inputValue);
+      setCurrentSum(result);
+      setInputValue(result);
+    } else if (operation == 4) {
+      result = currentSum / parseFloat(inputValue);
+      setCurrentSum(result);
+      setInputValue(result);
+    }
+    displayCurrentSum.style.display = "none";
+  };
 
   function handleOnClickButton(e) {
     let displayCurrentSum = document.querySelector("#sum");
+    let result = 0;
     displayCurrentSum.style.display = "none";
     switch (e.currentTarget.id) {
       case "button-0":
@@ -55,13 +78,14 @@ function App() {
         return;
       case "button-addition":
         setOperation(1);
+        setIsInOperation(true);
         if (firstNumber == 0) {
           setCurrentSum(parseFloat(inputValue));
           setInputValue("");
           displayCurrentSum.style.display = "block";
           setFirstNumber(1);
         } else {
-          setCurrentSum(currentSum + parseFloat(inputValue));
+          handleOnClickEqualButton(result, displayCurrentSum);
           setInputValue("");
           displayCurrentSum.style.display = "block";
           return;
@@ -70,13 +94,14 @@ function App() {
         return;
       case "button-subtract":
         setOperation(2);
+        setIsInOperation(true);
         if (firstNumber == 0) {
           setCurrentSum(parseFloat(inputValue));
           setInputValue("");
           displayCurrentSum.style.display = "block";
           setFirstNumber(1);
         } else {
-          setCurrentSum(currentSum - parseFloat(inputValue));
+          handleOnClickEqualButton(result, displayCurrentSum);
           setInputValue("");
           displayCurrentSum.style.display = "block";
           return;
@@ -85,13 +110,14 @@ function App() {
 
       case "button-multiply":
         setOperation(3);
+        setIsInOperation(true);
         if (firstNumber == 0) {
           setCurrentSum(parseFloat(inputValue));
           setInputValue("");
           displayCurrentSum.style.display = "block";
           setFirstNumber(1);
         } else {
-          setCurrentSum(currentSum * parseFloat(inputValue));
+          handleOnClickEqualButton(result, displayCurrentSum);
           setInputValue("");
           displayCurrentSum.style.display = "block";
           return;
@@ -99,32 +125,23 @@ function App() {
         return;
       case "button-divide":
         setOperation(4);
+        setIsInOperation(true);
         if (firstNumber == 0) {
           setCurrentSum(parseFloat(inputValue));
           setInputValue("");
           displayCurrentSum.style.display = "block";
           setFirstNumber(1);
         } else {
-          setCurrentSum(currentSum / parseFloat(inputValue));
+          handleOnClickEqualButton(result, displayCurrentSum);
           setInputValue("");
           displayCurrentSum.style.display = "block";
           return;
         }
         return;
       case "button-equal":
-        setInputValue("");
-        setFirstNumber(0);
-        if (operation == 1) {
-          setCurrentSum(currentSum + parseFloat(inputValue));
-        } else if (operation == 2) {
-          setCurrentSum(currentSum - parseFloat(inputValue));
-        } else if (operation == 3) {
-          setCurrentSum(currentSum * parseFloat(inputValue));
-        } else if (operation == 4) {
-          setCurrentSum(currentSum / parseFloat(inputValue));
-        }
-        // inputValue.style.display = "none";
-        displayCurrentSum.style.display = "block";
+        console.log(inputValue);
+        console.log(currentSum);
+        handleOnClickEqualButton(result, displayCurrentSum);
     }
   }
 
