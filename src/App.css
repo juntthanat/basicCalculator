@@ -138,3 +138,19 @@
   border-radius: 10px;
   border: 1px solid black;
 }
+.right-container-item{
+  position: absolute;
+  display: flex;
+  padding: 15px;
+  height:95%;
+  width:90%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  align-items: flex-end;
+  flex-direction: column-reverse;
+  list-style-type: none;
+  font-size: 32px;
+  font-weight: bold;
+}
+

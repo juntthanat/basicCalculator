@@ -63,7 +63,7 @@ function App() {
     }
   }
   function historyResultHandler(e){
-    if(historyResult.length > 3){
+    if(historyResult.length > 12){
       historyResult.pop()
     }
     setHistoryResult([eval(numberString), ...historyResult]);
@@ -143,7 +143,15 @@ function App() {
           </div>
         </div>
         <div className="right-container">
-          <div className="display-history-result-container"></div>
+          <div className="display-history-result-container">
+            <div className="right-container-item">
+              {
+                historyResult.map(item =>{
+                  return <li>{item}</li>;
+                })
+              }
+            </div>
+            </div>
         </div>
       </div>
     </div>
