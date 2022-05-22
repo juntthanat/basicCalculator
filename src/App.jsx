@@ -4,6 +4,7 @@ import { FiPlus, FiMinus, FiX, FiDivide } from "react-icons/fi";
 
 function App() {
   const [numberString, setNumberString] = useState("");
+  const [historyResult, setHistoryResult] = useState([]);
 
   function handleOnClickButton(e) {
     switch (e.currentTarget.id){
@@ -57,10 +58,16 @@ function App() {
         return;
       case "button-equal":
         setNumberString(eval(numberString))
+        historyResultHandler();
         return;
     }
   }
-
+  function historyResultHandler(e){
+    if(historyResult.length > 3){
+      historyResult.pop()
+    }
+    setHistoryResult([eval(numberString), ...historyResult]);
+  }
   return (
     <div className="App">
       <div className="center">
