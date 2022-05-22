@@ -3,145 +3,61 @@ import React, { useState } from "react";
 import { FiPlus, FiMinus, FiX, FiDivide } from "react-icons/fi";
 
 function App() {
-  const [resultList, setResultList] = useState([]);
-  const [currentSum, setCurrentSum] = useState(0);
-  const [operation, setOperation] = useState(0);
-  const [firstNumber, setFirstNumber] = useState(0);
-  const [inputValue, setInputValue] = useState("");
-  const [useDot, setUseDot] = useState();
-  const [isInOperation, setIsInOperation] = useState(false);
-
-  const handleOnClickEqualButton = (result, displayCurrentSum) => {
-    if (operation == 1) {
-      result = currentSum + parseFloat(inputValue);
-      setCurrentSum(result);
-      setInputValue(result);
-    } else if (operation == 2) {
-      result = currentSum - parseFloat(inputValue);
-      setCurrentSum(result);
-      setInputValue(result);
-    } else if (operation == 3) {
-      result = currentSum * parseFloat(inputValue);
-      setCurrentSum(result);
-      setInputValue(result);
-    } else if (operation == 4) {
-      result = currentSum / parseFloat(inputValue);
-      setCurrentSum(result);
-      setInputValue(result);
-    }
-    displayCurrentSum.style.display = "none";
-  };
+  const [numberString, setNumberString] = useState("");
 
   function handleOnClickButton(e) {
-    let displayCurrentSum = document.querySelector("#sum");
-    let result = 0;
-    displayCurrentSum.style.display = "none";
-    switch (e.currentTarget.id) {
+    switch (e.currentTarget.id){
       case "button-0":
-        setInputValue((prevVal) => prevVal + "0");
+        setNumberString((prevVal) => prevVal + "0");
         return;
       case "button-1":
-        setInputValue((prevVal) => prevVal + "1");
+        setNumberString((prevVal) => prevVal + "1");
         return;
       case "button-2":
-        setInputValue((prevVal) => prevVal + "2");
+        setNumberString((prevVal) => prevVal + "2");
         return;
       case "button-3":
-        setInputValue((prevVal) => prevVal + "3");
+        setNumberString((prevVal) => prevVal + "3");
         return;
       case "button-4":
-        setInputValue((prevVal) => prevVal + "4");
+        setNumberString((prevVal) => prevVal + "4");
         return;
       case "button-5":
-        setInputValue((prevVal) => prevVal + "5");
+        setNumberString((prevVal) => prevVal + "5");
         return;
       case "button-6":
-        setInputValue((prevVal) => prevVal + "6");
+        setNumberString((prevVal) => prevVal + "6");
         return;
       case "button-7":
-        setInputValue((prevVal) => prevVal + "7");
+        setNumberString((prevVal) => prevVal + "7");
         return;
       case "button-8":
-        setInputValue((prevVal) => prevVal + "8");
+        setNumberString((prevVal) => prevVal + "8");
         return;
       case "button-9":
-        setInputValue((prevVal) => prevVal + "9");
+        setNumberString((prevVal) => prevVal + "9");
         return;
       case "button-dot":
-        setInputValue((prevVal) => prevVal + ".");
+        setNumberString((prevVal) => prevVal + ".");
         return;
       case "button-clear":
-        setInputValue("");
-        setCurrentSum(0);
-        setFirstNumber(0);
-        displayCurrentSum.style.display = "block";
+        setNumberString("")
         return;
       case "button-addition":
-        setOperation(1);
-        setIsInOperation(true);
-        if (firstNumber == 0) {
-          setCurrentSum(parseFloat(inputValue));
-          setInputValue("");
-          displayCurrentSum.style.display = "block";
-          setFirstNumber(1);
-        } else {
-          handleOnClickEqualButton(result, displayCurrentSum);
-          setInputValue("");
-          displayCurrentSum.style.display = "block";
-          return;
-        }
-
+        setNumberString((prevVal) => prevVal + "+");
         return;
       case "button-subtract":
-        setOperation(2);
-        setIsInOperation(true);
-        if (firstNumber == 0) {
-          setCurrentSum(parseFloat(inputValue));
-          setInputValue("");
-          displayCurrentSum.style.display = "block";
-          setFirstNumber(1);
-        } else {
-          handleOnClickEqualButton(result, displayCurrentSum);
-          setInputValue("");
-          displayCurrentSum.style.display = "block";
-          return;
-        }
+        setNumberString((prevVal) => prevVal + "-");
         return;
-
       case "button-multiply":
-        setOperation(3);
-        setIsInOperation(true);
-        if (firstNumber == 0) {
-          setCurrentSum(parseFloat(inputValue));
-          setInputValue("");
-          displayCurrentSum.style.display = "block";
-          setFirstNumber(1);
-        } else {
-          handleOnClickEqualButton(result, displayCurrentSum);
-          setInputValue("");
-          displayCurrentSum.style.display = "block";
-          return;
-        }
+        setNumberString((prevVal) => prevVal + "*");
         return;
       case "button-divide":
-        setOperation(4);
-        setIsInOperation(true);
-        if (firstNumber == 0) {
-          setCurrentSum(parseFloat(inputValue));
-          setInputValue("");
-          displayCurrentSum.style.display = "block";
-          setFirstNumber(1);
-        } else {
-          handleOnClickEqualButton(result, displayCurrentSum);
-          setInputValue("");
-          displayCurrentSum.style.display = "block";
-          return;
-        }
+        setNumberString((prevVal) => prevVal + "/");
         return;
       case "button-equal":
-        console.log(inputValue);
-        console.log(currentSum);
-        handleOnClickEqualButton(result, displayCurrentSum);
+        setNumberString(eval(numberString))
+        return;
     }
   }
 
@@ -153,8 +69,7 @@ function App() {
           <div className="left-element">
             <div className="display-container">
               <div className="display-result">
-                <div id="result">{inputValue}</div>
-                <div id="sum">{currentSum}</div>
+                <div id="result">{numberString}</div>
               </div>
             </div>
             <div className="button-container">
@@ -219,6 +134,9 @@ function App() {
               </div>
             </div>
           </div>
+        </div>
+        <div className="right-container">
+          <div className="display-history-result-container"></div>
         </div>
       </div>
     </div>
