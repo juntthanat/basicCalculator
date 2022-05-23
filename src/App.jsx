@@ -5,63 +5,79 @@ import { FiPlus, FiMinus, FiX, FiDivide } from "react-icons/fi";
 function App() {
   const [numberString, setNumberString] = useState("");
   const [historyResult, setHistoryResult] = useState([]);
+  const [isOperand, setIsOperand] = useState(true);
 
   function handleOnClickButton(e) {
     switch (e.currentTarget.id){
       case "button-0":
         setNumberString((prevVal) => prevVal + "0");
+        setIsOperand(false);
         return;
       case "button-1":
         setNumberString((prevVal) => prevVal + "1");
+        setIsOperand(false);
         return;
       case "button-2":
         setNumberString((prevVal) => prevVal + "2");
+        setIsOperand(false);
         return;
       case "button-3":
         setNumberString((prevVal) => prevVal + "3");
+        setIsOperand(false);
         return;
       case "button-4":
         setNumberString((prevVal) => prevVal + "4");
+        setIsOperand(false);
         return;
       case "button-5":
         setNumberString((prevVal) => prevVal + "5");
+        setIsOperand(false);
         return;
       case "button-6":
         setNumberString((prevVal) => prevVal + "6");
+        setIsOperand(false);
         return;
       case "button-7":
         setNumberString((prevVal) => prevVal + "7");
+        setIsOperand(false);
         return;
       case "button-8":
         setNumberString((prevVal) => prevVal + "8");
+        setIsOperand(false);
         return;
       case "button-9":
         setNumberString((prevVal) => prevVal + "9");
+        setIsOperand(false);
         return;
       case "button-dot":
         setNumberString((prevVal) => prevVal + ".");
+        setIsOperand(false);
         return;
       case "button-clear":
         setNumberString("")
         return;
       case "button-addition":
-        if(numberString.length > 0){
+        if(isOperand == false){
           setNumberString((prevVal) => prevVal + "+");
+          setIsOperand(true);
         }
         return;
       case "button-subtract":
-        if(numberString.length > 0){
+        if(isOperand == false){
           setNumberString((prevVal) => prevVal + "-");
+          setIsOperand(true);
         }
         return;
       case "button-multiply":
-        if(numberString.length > 0){
+        if(isOperand == false){
           setNumberString((prevVal) => prevVal + "*");
+          setIsOperand(true);
         }
         return;
       case "button-divide":
-        if(numberString.length > 0){
+        if(isOperand == false){
           setNumberString((prevVal) => prevVal + "/");
+          setIsOperand(true);
         }
         return;
       case "button-equal":
@@ -76,10 +92,6 @@ function App() {
     }
     setHistoryResult([eval(numberString), ...historyResult]);
   }
-  // First Operation Checker
-  // if(numberString == "+"||numberString == "-"||numberString == "*"||numberString == "/"){
-  //   setNumberString("");
-  // }
   return (
     <div className="App">
       <div className="center">
