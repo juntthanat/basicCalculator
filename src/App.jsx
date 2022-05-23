@@ -45,16 +45,24 @@ function App() {
         setNumberString("")
         return;
       case "button-addition":
-        setNumberString((prevVal) => prevVal + "+");
+        if(numberString.length > 0){
+          setNumberString((prevVal) => prevVal + "+");
+        }
         return;
       case "button-subtract":
-        setNumberString((prevVal) => prevVal + "-");
+        if(numberString.length > 0){
+          setNumberString((prevVal) => prevVal + "-");
+        }
         return;
       case "button-multiply":
-        setNumberString((prevVal) => prevVal + "*");
+        if(numberString.length > 0){
+          setNumberString((prevVal) => prevVal + "*");
+        }
         return;
       case "button-divide":
-        setNumberString((prevVal) => prevVal + "/");
+        if(numberString.length > 0){
+          setNumberString((prevVal) => prevVal + "/");
+        }
         return;
       case "button-equal":
         setNumberString(eval(numberString))
@@ -68,6 +76,10 @@ function App() {
     }
     setHistoryResult([eval(numberString), ...historyResult]);
   }
+  // First Operation Checker
+  // if(numberString == "+"||numberString == "-"||numberString == "*"||numberString == "/"){
+  //   setNumberString("");
+  // }
   return (
     <div className="App">
       <div className="center">
