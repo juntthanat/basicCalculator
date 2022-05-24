@@ -84,6 +84,9 @@ function App() {
         setNumberString(eval(numberString))
         historyResultHandler();
         return;
+      case "button-back":
+        const temp = numberString.slice(0, -1);
+        setNumberString(temp)
     }
   }
   function historyResultHandler(e){
@@ -91,6 +94,10 @@ function App() {
       historyResult.pop()
     }
     setHistoryResult([eval(numberString), ...historyResult]);
+  }
+  if(numberString.length == 14){
+    const temp = numberString.slice(0, -1);
+    setNumberString(temp)
   }
   return (
     <div className="App">
@@ -156,6 +163,9 @@ function App() {
                 </button>
               </div>
               <div className="button-clear-equal">
+                <button id="button-back" onClick={handleOnClickButton}>
+                  back
+                </button>
                 <button id="button-clear" onClick={handleOnClickButton}>
                   AC
                 </button>
