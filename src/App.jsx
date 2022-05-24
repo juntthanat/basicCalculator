@@ -81,12 +81,19 @@ function App() {
         }
         return;
       case "button-equal":
-        setNumberString(eval(numberString))
+        if(numberString.length == 0){
+          setNumberString("0")
+        }
+        else {
+          setNumberString(eval(numberString))
+        }
         historyResultHandler();
         return;
       case "button-back":
-        const temp = numberString.slice(0, -1);
-        setNumberString(temp)
+        if(numberString.length > 0){
+          const temp = numberString.slice(0, -1);
+          setNumberString(temp)
+        }
     }
   }
   function historyResultHandler(e){
